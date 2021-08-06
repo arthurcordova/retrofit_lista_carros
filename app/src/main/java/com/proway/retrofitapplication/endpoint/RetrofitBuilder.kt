@@ -5,13 +5,22 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    private val retrofit = Retrofit.Builder()
+    private val retrofitParallelum = Retrofit.Builder()
         .baseUrl("https://parallelum.com.br")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
+    private val retrofirFake = Retrofit.Builder()
+        .baseUrl("https://fakestoreapi.com")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
     fun getServiceCarInstance(): ServiceCar {
-        return retrofit.create(ServiceCar::class.java)
+        return retrofitParallelum.create(ServiceCar::class.java)
+    }
+
+    fun getServiceUserInstance(): ServiceUser {
+        return retrofirFake.create(ServiceUser::class.java)
     }
 
 }
